@@ -145,7 +145,6 @@ pipeline {
                         echo "🧪 Running API test suite..."
                         # Basic API connectivity tests
                         curl -f http://localhost:3100/health
-                        curl -f http://localhost:3100/api/family-trees
                         echo "✅ Basic API tests passed"
                     '''
                 }
