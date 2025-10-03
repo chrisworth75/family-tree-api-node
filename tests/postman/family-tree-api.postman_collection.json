@@ -1,0 +1,213 @@
+{
+  "info": {
+    "name": "Family Tree API (Node)",
+    "description": "API tests for family-tree-api-node (Express)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Get All Trees",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees"]
+        }
+      }
+    },
+    {
+      "name": "Create Family Tree",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"treeName\": \"Smith Family\",\n  \"description\": \"The Smith family tree\",\n  \"rootPerson\": {\n    \"firstName\": \"John\",\n    \"lastName\": \"Smith\",\n    \"gender\": \"Male\"\n  }\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3200/api/trees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees"]
+        }
+      }
+    },
+    {
+      "name": "Get Tree by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1"]
+        }
+      }
+    },
+    {
+      "name": "Get Tree with Members (Full)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/full",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "full"]
+        }
+      }
+    },
+    {
+      "name": "Add Member to Tree",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Jane\",\n  \"lastName\": \"Smith\",\n  \"gender\": \"Female\",\n  \"birthDate\": \"1985-05-15\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members"]
+        }
+      }
+    },
+    {
+      "name": "Get Members of Tree",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members"]
+        }
+      }
+    },
+    {
+      "name": "Get Member by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members", "1"]
+        }
+      }
+    },
+    {
+      "name": "Add Partner Relationship",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"relatedMemberId\": 2\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members/1/partner",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members", "1", "partner"]
+        }
+      }
+    },
+    {
+      "name": "Add Child Relationship",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"relatedMemberId\": 3\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members/1/children",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members", "1", "children"]
+        }
+      }
+    },
+    {
+      "name": "Get Member Relationships",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1/members/1/relationships",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1", "members", "1", "relationships"]
+        }
+      }
+    },
+    {
+      "name": "Delete Tree",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3200/api/trees/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3200",
+          "path": ["api", "trees", "1"]
+        }
+      }
+    }
+  ]
+}

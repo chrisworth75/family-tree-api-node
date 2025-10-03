@@ -261,8 +261,25 @@ app.get('/api/trees', async (req, res) => {
   }
 });
 
-// GET /api/trees/:treeId - Get a specific tree with all members and relationships
+// GET /api/trees/:treeId - Get a specific tree
 app.get('/api/trees/:treeId', async (req, res) => {
+  try {
+    const { treeId } = req.params;
+
+    const treeResult = await pool.query('SELECT * FROM family_trees WHERE id = $1', [treeId]);
+    if (treeResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Tree not found' });
+    }
+
+    res.json(treeResult.rows[0]);
+  } catch (error) {
+    console.error('Error fetching tree:', error);
+    res.status(500).json({ error: 'Internal server error', message: error.message });
+  }
+});
+
+// GET /api/trees/:treeId/full - Get a specific tree with all members and relationships
+app.get('/api/trees/:treeId/full', async (req, res) => {
   try {
     const { treeId } = req.params;
 
