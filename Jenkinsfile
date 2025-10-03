@@ -78,7 +78,7 @@ pipeline {
                         --network family-tree-network \\
                         -e POSTGRES_PASSWORD=postgres \\
                         -e POSTGRES_DB=familytree \\
-                        -p 5433:5432 \\
+                        -p 5440:5432 \\
                         postgres:15-alpine
                     """
 
