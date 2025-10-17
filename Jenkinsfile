@@ -39,6 +39,27 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                sh '''
+                    echo "Installing Node.js dependencies..."
+                    npm install
+                    echo "Dependencies installed successfully"
+                '''
+            }
+        }
+
+        stage('Generate Postman Collection') {
+            steps {
+                sh '''
+                    echo "Generating Postman collection..."
+                    npm run build:collection
+                    echo "Collection generated successfully"
+                    ls -la build/
+                '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -48,6 +69,12 @@ pipeline {
                         image.push('latest')
                     }
                 }
+            }
+        }
+
+        stage('Archive Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'build/api-collection.json', fingerprint: true, allowEmptyArchive: true
             }
         }
 
