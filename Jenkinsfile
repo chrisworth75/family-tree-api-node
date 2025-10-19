@@ -89,6 +89,12 @@ pipeline {
                         docker network create family-tree-network || echo "Network already exists"
                     """
 
+                    // Kill any process using port 3100
+                    sh """
+                        echo "Killing any process using port 3100..."
+                        lsof -ti:3100 | xargs kill -9 || true
+                    """
+
                     // Stop existing containers
                     sh """
                         docker stop ${IMAGE_NAME} || true
