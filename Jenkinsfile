@@ -92,7 +92,7 @@ pipeline {
                     // Kill any process using port 3100
                     sh """
                         echo "Killing any process using port 3100..."
-                        lsof -ti:3100 | xargs kill -9 || true
+                        /usr/sbin/lsof -ti:3100 | xargs kill -9 || true
                     """
 
                     // Stop existing containers
