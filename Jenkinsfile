@@ -63,11 +63,12 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    def image = docker.build("${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}")
-                    docker.withRegistry("http://${REGISTRY}") {
-                        image.push()
-                        image.push('latest')
-                    }
+                    sh """
+                        docker build -t ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} .
+                        docker tag ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER} ${REGISTRY}/${IMAGE_NAME}:latest
+                        docker push ${REGISTRY}/${IMAGE_NAME}:${BUILD_NUMBER}
+                        docker push ${REGISTRY}/${IMAGE_NAME}:latest
+                    """
                 }
             }
         }
